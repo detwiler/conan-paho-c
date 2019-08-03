@@ -85,3 +85,9 @@ of Things (IoT)"""
                 self.cpp_info.libs.extend(["compat", "pthread"])
             else:
                 self.cpp_info.libs.extend(["c", "pthread"])
+        if self.options.SSL:
+            base_libname = "paho-mqtt3"
+            nossl_lib = "%s%s" % (base_libname, "a" if self.options.asynchronous else "c")
+            if not self.options.shared:
+                nossl_lib += "-static"
+            self.cpp_info.libs.remove(nossl_lib)
