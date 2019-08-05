@@ -11,6 +11,7 @@ if __name__ == "__main__":
     for build in new_builds:
         build.options['paho-c:asynchronous'] = False
     builder.items.extend(new_builds)
+    builds = list(builder.items)
     new_builds = deepcopy(builds)
     for build in new_builds:
         build.options['paho-c:SSL'] = True
